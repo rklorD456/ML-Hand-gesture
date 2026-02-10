@@ -1,0 +1,23 @@
+artifact_path: file:d:/iti/Technical/projects/ML-Hand gesture/mlruns/1/models/m-8e999fe1c7794809a6a4b8d8b09519fd/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.12.7
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.8.0
+    skops_trusted_types: null
+mlflow_version: 3.9.0
+model_id: m-8e999fe1c7794809a6a4b8d8b09519fd
+model_size_bytes: 5341175
+model_uuid: m-8e999fe1c7794809a6a4b8d8b09519fd
+prompts: null
+run_id: 3b3792c5566541adacf550768f3396f4
+utc_time_created: '2026-02-10 21:28:28.301815'

@@ -1,6 +1,12 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+import mlflow
+import mlflow.sklearn
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.svm import SVC
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, classification_report
 
 def plot_single_hand(landmarks_flat, label_name="Unknown"):
     """
@@ -73,4 +79,37 @@ def preprocess_landmarks(row):
     # Flatten back to a 1D array
     return landmarks.flatten()
 
+
+def train_and_log_model(model, model_name, X_train, y_train, X_validation, y_validation, params):
+    """
+    Trains model and logs it to MLflow with the specified parameters.
+    """
+    with mlflow.start_run(run_name=model_name):
+        
+        # tag with model name
+        mlflow.set_tag("model_name", model_name)
+
+        # Train the model
+        model.fit(X_train, y_train)
+        
+        # Predict on the validation set
+        y_pred = model.predict(X_validation)
+        
+        # Calculate metrics
+        accuracy = accuracy_score(y_validation, y_pred)
+        f1 = f1_score(y_validation, y_pred, average='weighted')
+        precision = precision_score(y_validation, y_pred, average='weighted')
+        recall = recall_score(y_validation, y_pred, average='weighted')
+        
+        # Log parameters and metrics to MLflow
+        mlflow.log_params(params)
+        mlflow.log_metric("accuracy", accuracy)
+        mlflow.log_metric("f1_score", f1)
+        mlflow.log_metric("precision", precision)
+        mlflow.log_metric("recall", recall)
+        
+        # Log the model to MLflow
+        mlflow.sklearn.log_model(model, "model")
+        
+        print(f"{model_name} - Accuracy: {accuracy:.4f}, F1 Score: {f1:.4f}, Precision: {precision:.4f}, Recall: {recall:.4f}")
 
