@@ -1,8 +1,9 @@
 # 🖐️ ML Hand Gesture Recognition (HaGRID & MediaPipe)
-
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
-![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Scikit--Learn%20%7C%20XGBoost-orange)
-![Computer Vision](https://img.shields.io/badge/Computer%20Vision-OpenCV%20%7C%20MediaPipe-green)
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
+[![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Scikit--Learn%20%7C%20XGBoost-orange)](https://scikit-learn.org/stable/)
+[![XGBoost](https://img.shields.io/badge/XGBoost-ML%20Library-orange)](https://xgboost.readthedocs.io/en/latest/)
+[![Computer Vision](https://img.shields.io/badge/Computer%20Vision-OpenCV%20%7C%20MediaPipe-green)](https://opencv.org/)
+[![MediaPipe](https://img.shields.io/badge/MediaPipe-Hand%20Landmarks-green)](https://google.github.io/mediapipe/solutions/hands.html)
 
 A comprehensive machine learning project for recognizing hand gestures using MediaPipe hand landmarks and multiple classification algorithms. This project demonstrates the full ML pipeline: data collection, advanced EDA, preprocessing, model selection, evaluation, experiment tracking, and real-time deployment.
 
