@@ -1,7 +1,14 @@
 import cv2
 import mediapipe as mp
 import numpy as np
+import cv2
+import mediapipe as mp
+import numpy as np
 import matplotlib.pyplot as plt
+import time
+from collections import deque
+import statistics
+from mediapipe.framework.formats import landmark_pb2
 import time
 from collections import deque
 import statistics
@@ -46,9 +53,12 @@ def preprocess_landmarks(row):
     landmarks = np.array(row, dtype=np.float32).reshape(21, 3)
     
     # Recenter around wrist
+    
+    # Recenter around wrist
     wrist_xy = landmarks[0, :2] 
     landmarks[:, :2] = landmarks[:, :2] - wrist_xy
     
+    # Scale based on middle finger tip distance
     # Scale based on middle finger tip distance
     wrist_point = landmarks[0, :2]
     mid_tip_point = landmarks[12, :2]
