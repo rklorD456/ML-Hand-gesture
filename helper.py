@@ -70,7 +70,7 @@ class RealTimeGesturePredictor:
         self.class_names = class_names
         
         # Buffer to stabilize the predictions on screen
-        self.prediction_buffer = deque(maxlen=5)
+        self.prediction_buffer = deque(maxlen=10)
         
         # Safe timestamp tracker for the Tasks API
         self.last_timestamp_ms = 0
@@ -160,7 +160,7 @@ class RealTimeGesturePredictor:
                 self.prediction_buffer.clear()
             
             cv2.imshow('Real-Time Gesture Recognition', frame)
-            if cv2.waitKey(5) & 0xFF == ord('q'):
+            if cv2.waitKey(5) & 0xFF == ord('q') :
                 break
                 
         cap.release()
