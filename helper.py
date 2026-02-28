@@ -80,15 +80,22 @@ def preprocess_landmarks(row):
     return landmarks.flatten()
 
 
-def train_and_log_model(model, model_name, X_train, y_train, X_validation, y_validation, params):
+def train_and_log_model(model, model_name, X_train, y_train, X_validation, y_validation, params, dataset_path=None):
     """
     Trains model and logs it to MLflow with the specified parameters.
+    
+    Args:
+        dataset_path (str): Path to the dataset file to log as an artifact.
     """
     with mlflow.start_run(run_name=model_name):
         
         # tag with model name
         mlflow.set_tag("model_name", model_name)
-
+        
+        # Log dataset as artifact if path is provided
+        if dataset_path:
+            mlflow.log_artifact(dataset_path)
+            
         # Train the model
         model.fit(X_train, y_train)
         
