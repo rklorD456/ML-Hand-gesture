@@ -110,6 +110,10 @@ class RealTimeGesturePredictor:
             print("Error: Could not open video source.")
             return
 
+        window_name = 'Real-Time Gesture Recognition'
+        cv2.namedWindow(window_name, cv2.WINDOW_NORMAL)
+        cv2.setWindowProperty(window_name, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+
         print("Starting video stream... Press 'q' to exit.")
         
         while cap.isOpened():
@@ -169,7 +173,7 @@ class RealTimeGesturePredictor:
                 # Clear buffer if no hand is detected to avoid stale predictions
                 self.prediction_buffer.clear()
             
-            cv2.imshow('Real-Time Gesture Recognition', frame)
+            cv2.imshow(window_name, frame)
             if cv2.waitKey(5) & 0xFF == ord('q') :
                 break
                 

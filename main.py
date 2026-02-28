@@ -21,4 +21,4 @@ if __name__ == "__main__":
         model_asset_path='models\\hand_landmarker.task'
     )
     
-    predictor.start_stream(video_source=0)
+    predictor.start_stream(video_source=1)
