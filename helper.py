@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
+
 
 import mlflow
 import mlflow.sklearn
@@ -94,7 +96,12 @@ def train_and_log_model(model, model_name, X_train, y_train, X_validation, y_val
         
         # Log dataset as artifact if path is provided
         if dataset_path:
-            mlflow.log_artifact(dataset_path)
+            mlflow.log_artifact(dataset_path, artifact_path="dataset")
+            
+            df_for_logging = pd.read_csv(dataset_path)
+            dataset = mlflow.data.from_pandas(df_for_logging, source=dataset_path, name="hand_gesture_data")
+            mlflow.log_input(dataset, context="training")
+            
             
         # Train the model
         model.fit(X_train, y_train)

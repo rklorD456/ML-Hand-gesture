@@ -7,6 +7,11 @@ from sklearn.ensemble import RandomForestClassifier
 from xgboost import XGBClassifier
 import mlflow
 
+import os
+
+os.environ['LOGNAME'] = 'mahmoud'
+
+
 # Import your helper functions
 from helper import preprocess_landmarks, train_and_log_model
 
